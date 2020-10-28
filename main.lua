@@ -30,13 +30,11 @@ function love .load()
         resizable = true
     } )
 
-    chance_of_block  = 66  --  % chance of placing a block
-
     local function generate_column( col )
         for  row = 0,  rows -1  do
             if love .math .random() *100 <= chance_of_block then
-                local xpos  = col *block_width
-                local ypos  = row *block_height
+                local xpos  = col *block_width -( block_width /2 )
+                local ypos  = row *block_height +1
 
                 local red  = row /rows
                 local green  = math.random()
@@ -47,10 +45,22 @@ function love .load()
         end  --  #rows
     end  --  generate_column()
 
-    generate_column( columns -1 )  --  rightmost, final column
-    generate_column( columns -2 )  --  repeat, for second to last column
+    chance_of_block  = 33  --  % chance of placing a block
+    generate_column( columns )  --  rightmost, final column
+
+    chance_of_block  = 44
+    generate_column( columns -1 )  --  repeat, for second to last column
+
+    chance_of_block  = 55
+    generate_column( columns -2 )
+
+    chance_of_block  = 66
     generate_column( columns -3 )
+
+    chance_of_block  = 77
     generate_column( columns -4 )
+
+    chance_of_block  = 88
     generate_column( columns -5 )
 
     r, g, b  = 0.5, 0.5, 0.0
